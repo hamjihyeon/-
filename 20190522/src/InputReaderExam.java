@@ -9,7 +9,7 @@ public class InputReaderExam {
 			int i;
 			try {
 				i = reader.read();
-				if(i == -1) break;	//Ctrl+z 누르면 뷁 브레이크
+				if(i == -1) break;	//Ctrl+z 누르면 브레이크
 				char c = (char)i;
 				System.out.print(c);
 			} catch (IOException e) {
