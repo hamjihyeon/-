@@ -23,11 +23,13 @@ public class GUI2_Components {
         String [] fruits  = {"- - - - - - -","apple", "banana", "kiwi", "lemon", "mango"};
         JComboBox comboBox = new JComboBox(fruits);
 
+        JPanel panelresult = new JPanel();
+        JLabel lbresult = new JLabel("Result");
+
         bt0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 bt0.setText("clicked");
-
             }
         });
 
@@ -40,6 +42,7 @@ public class GUI2_Components {
         panel.add(tf0);
         panel.add(ta0);
         panel.add(comboBox);
+        panel.add(lbresult);
 
         frame.add(panel);
 
