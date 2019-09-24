@@ -29,7 +29,18 @@ public class GUI2_Components {
         bt0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                bt0.setText("clicked");
+                String result = "";
+                result += lb0.getText();
+                result += bt0.getText();
+                result += cb0.isSelected(); //참,거짓
+                result += cb1.isSelected();
+                result += rb0.isSelected();
+                result += rb1.isSelected();
+                result += tf0.getText();
+                result += ta0.getText();
+                result += comboBox.getSelectedIndex();
+                result += comboBox.getSelectedItem();
+                lbresult.setText(result);
             }
         });
 
