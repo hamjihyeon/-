@@ -46,34 +46,24 @@ public class GUI2_Components {
         bt0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String result = "";
-                result += lb0.getText();
-                result += bt0.getText();
-                result += cb0.isSelected(); //참,거짓
-                result += cb1.isSelected();
-                result += rb0.isSelected();
-                result += rb1.isSelected();
-                result += tf0.getText();
-                result += ta0.getText();
-                result += comboBox.getSelectedIndex();
-                result += comboBox.getSelectedItem();
-                lbresult.setText(result);
+                showResult(lb0, bt0, cb0, cb1, rb0, rb1, tf0, ta0, comboBox, lbresult);
             }
         });
         ItemListener il = new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(e.getSource() == cb0) {
-                    System.out.println("JCheckBox0 "  + cb0.isSelected());
-                }else if(e.getSource() == cb1) {
-                    System.out.println("JCheckBox1 "  + cb1.isSelected());
-                }else if(e.getSource() == rb0) {
-                    System.out.println("미성년자" + rb0.isSelected());
-                }else if(e.getSource() == rb1) {
-                    System.out.println("성인" + rb1.isSelected());
-                }else if(e.getSource() == comboBox) {
-                    System.out.println(comboBox.getSelectedItem());
-                }
+                showResult(lb0, bt0, cb0, cb1, rb0, rb1, tf0, ta0, comboBox, lbresult);
+//                if(e.getSource() == cb0) {
+//                    System.out.println("JCheckBox0 "  + cb0.isSelected());
+//                }else if(e.getSource() == cb1) {
+//                    System.out.println("JCheckBox1 "  + cb1.isSelected());
+//                }else if(e.getSource() == rb0) {
+//                    System.out.println("미성년자" + rb0.isSelected());
+//                }else if(e.getSource() == rb1) {
+//                    System.out.println("성인" + rb1.isSelected());
+//                }else if(e.getSource() == comboBox) {
+//                    System.out.println(comboBox.getSelectedItem());
+//                }
             }
         };
         cb0.addItemListener(il);
@@ -100,5 +90,20 @@ public class GUI2_Components {
         frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private static void showResult(JLabel lb0, JButton bt0, JCheckBox cb0, JCheckBox cb1, JRadioButton rb0, JRadioButton rb1, JTextField tf0, JTextArea ta0, JComboBox comboBox, JLabel lbresult) {
+        String result = "";
+        result += lb0.getText();
+        result += bt0.getText();
+        result += cb0.isSelected(); //참,거짓
+        result += cb1.isSelected();
+        result += rb0.isSelected();
+        result += rb1.isSelected();
+        result += tf0.getText();
+        result += ta0.getText();
+        result += comboBox.getSelectedIndex();
+        result += comboBox.getSelectedItem();
+        lbresult.setText(result);
     }
 }
