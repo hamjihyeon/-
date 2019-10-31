@@ -1,51 +1,56 @@
-package img;
+package com.pastelgrim;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GUI11_주민번호테스터 {
+    private JPanel panel;
+    private JTextField tf0;
+    private JPasswordField pf;
+    private JLabel lbResult;
+
     public static void main(String[] args) {
-    JFrame frame = new JFrame();
-    JPanel panel = new JPanel();
-    JTextField ju0 = new JTextField(10);
-    JLabel lb = new JLabel("-");
-    JTextField ju1 = new JTextField(10);
-    JButton bt = new JButton("테스트");
-    bt.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            String jn = ju0.getText()+ju1.getText();
-            if(isGood(jn)==true){
-                lb.setText("o");
-            } else {
-                lb.setText("x");
+        JFrame frame = new JFrame("주민번호 테스터");
+        GUI11_주민번호테스터 app = new GUI11_주민번호테스터();
+        frame.add(app.panel);
+//        frame.setPreferredSize(new Dimension(400, 200));
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        app.tf0.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (app.tf0.getText().length() == 6) {
+                    app.pf.requestFocus();
+                }
             }
-        }
-    });
+        });
+        app.pf.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                if (app.pf.getPassword().length == 7) {
+                    if (app.isGood(app.tf0.getText() + new String(app.pf.getPassword()))) {
+                        app.lbResult.setText("O");
+                    } else {
+                        app.lbResult.setText("X");
+                    }
+                }
+            }
+        });
+    }
 
-    panel.add(ju0);
-    panel.add(lb);
-    panel.add(ju1);
-    panel.add(bt);
-    frame.add(panel);
-
-    frame.setPreferredSize(new Dimension(600, 400));
-    frame.pack();
-    frame.setVisible(true);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-}
-
-    private static boolean isGood(String jn) {
-        int [] mulN = {2,3,4,5,6,7,8,9,2,3,4,5};
+    private boolean isGood(String s) {
+        System.out.println(s);
+        int[] testNumber = {2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5};
         int sum = 0;
-        for(int i = 0; i<jn.length()-1; i++) {
-            sum += (jn.charAt(i)-'0') * mulN[i];
+        for (int i = 0; i < s.length()-1; i++) {
+            sum += (s.charAt(i) - '0') * testNumber[i];
         }
-        System.out.println(sum);
-        int last = (11-(sum%11)) %10;   //10일때 한자리만 써져야하므로 0 구하자
-
-        return (jn.charAt(jn.length()-1)-'0') == last;
+        int result = (11 - (sum % 11)) % 10;
+        return result == s.charAt(s.length() - 1) - '0';
     }
 }
